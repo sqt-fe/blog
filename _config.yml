@@ -83,4 +83,6 @@ search:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/sqt-fe/sqt-fe.github.io.git
+  branch: master
