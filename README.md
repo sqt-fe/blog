@@ -1,9 +1,14 @@
 # 商企通前端博客
 https://sqt-fe.github.io/
 
-# hexo工具认识
+构建工具：[hexo](https://hexo.io/zh-cn/)
+
+使用的主题：[hexo-theme-hiker](https://github.com/iTimeTraveler/hexo-theme-hiker/blob/master/README.cn.md)
+
+# Hexo工具认识
 > hexo是一个博客框架
-## hexo文件夹结构
+
+hexo文件夹结构
 ```
 ├── _config.yml 
 ├── db.json
@@ -49,8 +54,7 @@ yarn
 ```bash
 hexo new "文章名"
 ```
-> 
-* 文章名建议使用英文(是文件名称，与具体的文章标题有区别)
+> * 文章名建议使用英文(是文件名称，与具体的文章标题有区别) 
 * 创建的文件是md文件(使用markdow语法进行编写)
 * 生成的文件在`source/_posts`中
 
@@ -70,16 +74,10 @@ deploy s
 ```bash
 hexo d
 ```
-> 
-* 将编译出的public文件夹 上传至仓库，具体的配置见`_config.yml`文件中的`deploy`配置项
+> * 将编译出的public文件夹 上传至仓库，具体的配置见`_config.yml`文件中的`deploy`配置项
 * 部署的时候一定要先执行`deploy g`命令,将静态文件生成
 
 # Todo
-* 博客样式优化
-* 中英文翻译
+* 博客样式、功能的优化
 * 访问速度优化
 
-# hexo
-hexo学习指南：[hexo](https://hexo.io/zh-cn/)
-
-具体的样式参考该主题：[hexo-theme-hiker](https://github.com/iTimeTraveler/hexo-theme-hiker/blob/master/README.cn.md)
