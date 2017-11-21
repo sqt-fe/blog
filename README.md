@@ -1,18 +1,42 @@
 # 商企通前端博客
+https://sqt-fe.github.io/
 
-# 使用
-
-安装hexo
-```bash
-npm install -h hexo
+# hexo工具认识
+> hexo是一个博客框架
+## hexo文件夹结构
+```
+├── _config.yml 
+├── db.json
+├── node_modules 
+├── package.json
+├── public 
+├── scaffolds 
+├── source #所有文章文件放在这里
+└── themes #主题文件夹
 ```
 
-将仓库拉下来
+* _config.yml  站点的配置文件。
+* db.json   缓存文件
+* node_modules   安装的插件以及hexo所需的一些node.js模块。
+* package.json  应用程序信息，配置hexo运行需要的js包。
+* public  最终所见网页的所有内容
+* scaffolds   模板文件夹。当新建一个文章时，会默认包含对应模板的内容。
+* source  资源文件夹是存放用户资源的地方。所有的源文件都会被保存在_post文件夹中。除 posts 文件夹之外，开头命名为 (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。
+* themes  存放主题文件，hexo会根据主题来生成静态页面。
+
+# 如何使用
+
+* 安装hexo
+```bash
+npm install -g hexo-cli
+```
+
+* 拉取仓库
 ```bash
 git clone https://github.com/sqt-fe/sqt-fe.github.io.git
 ```
 
-安装依赖
+* 安装依赖
 ```bash
 npm install
 ```
@@ -21,21 +45,34 @@ npm install
 yarn
 ```
 
-新建文章
+* 新建文章
 ```bash
 hexo new "文章名"
 ```
-> 文章名最好使用英文
+> 
+* 文章名建议使用英文(是文件名称，与具体的文章标题有区别)
+* 创建的文件是md文件(使用markdow语法进行编写)
+* 生成的文件在`source/_posts`中
 
-本地生成文章
+* 本地生成文章
 ```bash
 hexo g
 ```
+> 这里会将文章编译生成对应的html,js,css等文件，写入public文件夹中
+
+本地效果预览
+```bash
+deploy s
+```
+> 方便本地调试查看效果
 
 发布文章
 ```bash
 hexo d
 ```
+> 
+* 将编译出的public文件夹 上传至仓库，具体的配置见`_config.yml`文件中的`deploy`配置项
+* 部署的时候一定要先执行`deploy g`命令,将静态文件生成
 
 # Todo
 * 博客样式优化
@@ -43,6 +80,6 @@ hexo d
 * 访问速度优化
 
 # hexo
-见[hexo](https://hexo.io/zh-cn/)
+hexo学习指南：[hexo](https://hexo.io/zh-cn/)
 
-主题见[hexo-theme-hiker](https://github.com/iTimeTraveler/hexo-theme-hiker/blob/master/README.cn.md)
+具体的样式参考该主题：[hexo-theme-hiker](https://github.com/iTimeTraveler/hexo-theme-hiker/blob/master/README.cn.md)
