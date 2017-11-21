@@ -1,11 +1,14 @@
 ---
 title: Weex的原生开发实践
 date: 2017-11-21 15:54:00
-tags: weex
+tags: 
+ - weex
 categories: 原生开发
 ---
 
 > ![](http://images2017.cnblogs.com/blog/743207/201708/743207-20170815160450475-868670826.png)
+
+<!--more-->
 
 ## weex概念与特性
 
