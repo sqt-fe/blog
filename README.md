@@ -64,7 +64,7 @@ hexo g
 
 * 本地效果预览
 ```bash
-deploy s
+hexo s
 ```
 > 方便本地调试查看效果
 
@@ -72,7 +72,7 @@ deploy s
 ```bash
 hexo d
 ```
-> 将编译出的public文件夹 上传至仓库，具体的配置见`_config.yml`文件中的`deploy`配置项；部署的时候一定要先执行`deploy g`命令,将静态文件生成
+> 将编译出的public文件夹 上传至仓库，具体的配置见`_config.yml`文件中的`hexo`配置项；部署的时候一定要先执行`hexo g`命令,将静态文件生成
 
 * 文件清理
 ```bash
@@ -102,11 +102,11 @@ tags: 第一篇文章
 ```
 这样在网站上，你就可以在 `Categories` 和 `Tags` 栏目发现你的文章了。
 
-3. 使用`deplpoy s` 命令 启动本地server ，用来预览你的文章效果
+3. 使用`hexo s` 命令 启动本地server ，用来预览你的文章效果
 
-4. 使用`delpoy g` 将 `md` 编写的文章进行构建编译，生成对应的静态文件
+4. 使用`hexo g` 将 `md` 编写的文章进行构建编译，生成对应的静态文件
 
-5. 最后通过`deploy d` 将 静态文件发布至仓库，这样就大功告成！
+5. 最后通过`hexo d` 将 静态文件发布至仓库，这样就大功告成！
 
 # 注意
 文章中的图片建议使用 **图床**，可以选择[七牛云](https://www.qiniu.com/?hmsr=biaoti&hmpl=pinzhuan&hmcu=biaoti&hmkw=&hmci=)等
