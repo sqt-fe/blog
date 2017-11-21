@@ -1,3 +1,12 @@
+# 目录
+* [商企通前端博客](#商企通前端博客)
+* [Hexo](#Hexo)
+* [如何使用](#如何使用)
+* [具体写作](#具体写作)
+* [如何共建](#如何共建)
+* [注意](#注意)
+* [todo](#todo)
+
 # 商企通前端博客
 https://sqt-fe.github.io/
 
@@ -5,7 +14,7 @@ https://sqt-fe.github.io/
 
 使用的主题：[hexo-theme-hiker](https://github.com/iTimeTraveler/hexo-theme-hiker/blob/master/README.cn.md)
 
-# Hexo工具认识
+# Hexo
 > hexo是一个博客框架
 
 hexo文件夹结构
@@ -107,6 +116,17 @@ tags: 第一篇文章
 4. 使用`hexo g` 将 `md` 编写的文章进行构建编译，生成对应的静态文件
 
 5. 最后通过`hexo d` 将 静态文件发布至仓库，这样就大功告成！
+
+# 如何共建
+
+1. 博客样式共建
+
+> 需要对`hexo`的文档熟悉
+通过对`hexo-theme-hiker`的主题的修改，定制出自身的样式
+
+2. 博客文章共建
+
+小组成员通过使用`hexo`发布技术文章
 
 # 注意
 文章中的图片建议使用 **图床**，可以选择[七牛云](https://www.qiniu.com/?hmsr=biaoti&hmpl=pinzhuan&hmcu=biaoti&hmkw=&hmci=)等
