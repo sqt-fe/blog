@@ -44,3 +44,5 @@ hexo d
 
 # hexo
 见[hexo](https://hexo.io/zh-cn/)
+
+主题见[hexo-theme-hiker](https://github.com/iTimeTraveler/hexo-theme-hiker/blob/master/README.cn.md)
