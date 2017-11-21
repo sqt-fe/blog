@@ -74,7 +74,42 @@ hexo d
 ```
 > 将编译出的public文件夹 上传至仓库，具体的配置见`_config.yml`文件中的`deploy`配置项；部署的时候一定要先执行`deploy g`命令,将静态文件生成
 
-# 具体的写作讲解
+* 文件清理
+```bash
+hexo clean
+```
+> 这个命令会清理`hexo g`生成的文件
+
+# 具体写作
+1. `hexo new "文件名"`成功后，你可以在`source/_posts`中找到你的 `md` 文件
+
+2. 打开 `md` 文件，会发现头部的 文章 设置，类似
+```
+---
+title: 第一篇测试文章
+date: 2017-11-21 15:54:00
+tags:
+---
+```
+这里我们可以根据文章来具体设置
+```
+---
+title: 第一篇测试文章
+date: 2017-11-21 15:54:00
+categories: 测试
+tags: 第一篇文章
+---
+```
+这样在网站上，你就可以在 `Categories` 和 `Tags` 栏目发现你的文章了。
+
+3. 使用`deplpoy s` 命令 启动本地server ，用来预览你的文章效果
+
+4. 使用`delpoy g` 将 `md` 编写的文章进行构建编译，生成对应的静态文件
+
+5. 最后通过`deploy d` 将 静态文件发布至仓库，这样就大功告成！
+
+# 注意
+文章中的图片建议使用 **图床**，可以选择[七牛云](https://www.qiniu.com/?hmsr=biaoti&hmpl=pinzhuan&hmcu=biaoti&hmkw=&hmci=)等
 
 # Todo
 * 博客样式、功能的优化
