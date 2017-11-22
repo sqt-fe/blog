@@ -113,6 +113,10 @@ tags: 第一篇文章
 
 3. 使用`hexo s` 命令 启动本地server ，用来预览你的文章效果
 
+> 如果启动server后打开localhost:4000页面空白，可以尝试运行命令
+git clone https://github.com/iTimeTraveler/hexo-theme-hiker.git themes/hiker再重新启动服务试试
+
+
 4. 使用`hexo g` 将 `md` 编写的文章进行构建编译，生成对应的静态文件
 
 5. 最后通过`hexo d` 将 静态文件发布至仓库，这样就大功告成！
