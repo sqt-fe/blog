@@ -71,7 +71,8 @@ cd weexpack-demo && npm install
 当前置的步骤全部完成时，我们就要开始进入大坑了。
 **1.第一个坑**
 weex推荐使用weex run android命令来运行起安卓应用，但是很快会报错<font style="color:red">No android devices found.</font>
-<img src="http://images2017.cnblogs.com/blog/743207/201708/743207-20170815174721256-1719922365.png" width = "300" height = "300" alt="图片名称"/> <img src="http://images2017.cnblogs.com/blog/743207/201708/743207-20170815174731131-1238833548.png" width = "300" height = 340" alt="图片名称"/>
+<img src="http://images2017.cnblogs.com/blog/743207/201708/743207-20170815174721256-1719922365.png" width = "300" height = "300" alt="图片名称"/> 
+<img src="http://images2017.cnblogs.com/blog/743207/201708/743207-20170815174731131-1238833548.png" width = "300" height = "340" alt="图片名称"/>
 
 Chrome中开的服务是可以的
 <img src="http://images2017.cnblogs.com/blog/743207/201708/743207-20170815174816068-498806253.png" width = "250" height = "400" alt="图片名称"/>
