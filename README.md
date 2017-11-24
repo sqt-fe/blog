@@ -1,9 +1,10 @@
 # 目录
 * [商企通前端博客](#商企通前端博客)
-* [Hexo](#Hexo)
+* [Hexo](#xexo)
 * [如何使用](#如何使用)
 * [具体写作](#具体写作)
 * [如何共建](#如何共建)
+* [hexo admin](#hexo admin)
 * [注意](#注意)
 * [todo](#todo)
 
@@ -143,6 +144,14 @@ tags: 第一篇文章
 2. 博客文章共建
 
 小组成员通过使用`hexo`发布技术文章
+
+# hexo admin
+
+![](http://images.cnblogs.com/cnblogs_com/zqzjs/758380/o_WX20171124-122304@2x.png)
+
+[hexo admin](https://jaredforsyth.com/hexo-admin/)让你爱上写作
+
+运行命令`npm run write`,浏览器会自动打开`http://localhost:4000/admin`,开始你的写作把！
 
 # 注意
 文章中的图片建议使用 **图床**，可以选择[七牛云](https://www.qiniu.com/?hmsr=biaoti&hmpl=pinzhuan&hmcu=biaoti&hmkw=&hmci=)等
