@@ -89,6 +89,17 @@ hexo clean
 ```
 > 这个命令会清理`hexo g`生成的文件
 
+* 一键化命令
+```bash
+npm run dev
+```
+本地调试
+
+```bash
+npm run build
+```
+发布
+
 # 具体写作
 1. `hexo new "文件名"`成功后，你可以在`source/_posts`中找到你的 `md` 文件
 
