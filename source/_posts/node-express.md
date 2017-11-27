@@ -10,6 +10,8 @@ tags: node
 
 本篇文章使用node+express实现了一个简单的图片上传功能：用户点击图片上传，会跳转到上传成功页面并展示上传的图片。
 
+<!--more-->
+
 ## 前言
 
 一直想找资料入门node，试着一步步实现一个功能，都没有合适的资料。直到看到[https://www.nodebeginner.org/index-zh-cn.html#](https://www.nodebeginner.org/index-zh-cn.html#) ，这本书教你如何**一步一步**结合基本的API搭建一个简单的应用，实现了简单的图片上传功能。我看完之后终于感觉自己**基本入门**node了。文章中有附源码地址，[https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application](https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application) ，如果你感觉还没有入门node，可以试试这本书。
@@ -226,7 +228,7 @@ var server = app.listen(3000, function () {
 
 源码附上，https://github.com/Lie8466/node-app/tree/node-express
 
-感谢您的阅读！这是我的学习过程，但愿对您有帮助。
+感谢您的阅读！这是我的学习过程，希望对你有所帮助~
 
 ## 参考文档
 

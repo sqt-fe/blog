@@ -143,12 +143,12 @@ html{
 	filter:alpha(opacity=90);  -moz-opacity:0.9;  -khtml-opacity: 0.9;  opacity: 0.9;
 }
 .homelogoback>h1>a {
-	color: #E91E63;
+	color: #0dca76;
 	letter-spacing: 9px;
 	text-transform: uppercase;
 }
 .homelogoback>h3{
-	color: #E91E63;
+	color: #0dca76;
 }
     
 .thumb{

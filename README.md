@@ -124,9 +124,6 @@ tags: 第一篇文章
 
 3. 使用`hexo s` 命令 启动本地server ，用来预览你的文章效果
 
-> 如果启动server后打开localhost:4000页面空白，可以尝试删除themes下的hiker文件夹，运行命令
-`git clone https://github.com/sqt-fe/hexo-theme-hikers.git themes/hikers`，再重新启动服务试试
-
 4. 使用`hexo clean`，清除public文件夹
 
 5. 使用`hexo g` 将 `md` 编写的文章进行构建编译，生成对应的静态文件
