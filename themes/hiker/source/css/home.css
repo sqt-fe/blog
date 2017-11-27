@@ -147,6 +147,9 @@ html{
 	letter-spacing: 9px;
 	text-transform: uppercase;
 }
+.homelogoback>h3{
+	color: #E91E63;
+}
     
 .thumb{
 	display: block;
