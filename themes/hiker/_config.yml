@@ -31,18 +31,18 @@ avatar:
 # eg. mode: image | polyline | trianglify
 home_background_image:
   enable: true
-  mode: image
+  mode: polyline
   rolling: true
   url: [css/images/home-bg.jpg, css/images/sample.jpg, https://source.unsplash.com/collection/954550/1920x1080]
 
 home_logo_image:
   enable: false
   border: false
-  url: css/images/homelogo.jpg
+  url: css/images/eatbetter.png
 
 
 # AboutPage background
-about_big_image: [css/images/pose.jpg, css/images/sample.jpg, https://source.unsplash.com/collection/954550/1920x1080]
+# about_big_image: [css/images/pose.jpg, css/images/sample.jpg, https://source.unsplash.com/collection/954550/1920x1080]
 
 
 # Archive pagination

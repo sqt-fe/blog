@@ -151,7 +151,7 @@
     </script>
     
 
-    <!--<% if (!theme.home_logo_image.enable && backgroundTheme != "POLYLINE"){ %>
+    <% if (!theme.home_logo_image.enable && backgroundTheme != "POLYLINE"){ %>
       <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
     <% } else { %>
       <div id="homelogo" class="homelogo"> 
@@ -159,18 +159,16 @@
  
         <% if (theme.home_logo_image.enable){ %>
           <% if (theme.home_logo_image.border){ %>
-            <img id="homelogoimg" src="<%- partial('post/urlconvert', {tempUrl: theme.home_logo_image.url}) %>" style="border-style: solid; border-color: rgba(24,24,21,0.1); border-width: 8px;">
+            <img id="homelogoimg"  src="<%- partial('post/urlconvert', {tempUrl: theme.home_logo_image.url}) %>" style="border-style: solid; border-color: rgba(24,24,21,0.1); border-width: 8px;">
           <% } else {%>
             <img id="homelogoimg" src="<%- partial('post/urlconvert', {tempUrl: theme.home_logo_image.url}) %>" >
           <% } %>
         <% } else {%>
           <div class="homelogoback" <% if (backgroundTheme != "POLYLINE"){ %> style="border: 1px solid #404040;" <% } %>>
-            <h1><a href="#content" id="logo"><%= config.title %></a></h1>
-            <h3><%= config.description%></h3>
-            <h5><%= config.author %></h5> -->
-            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
-          <!-- </div>
-        <% } %> -->
+             <h1><a href="#content" id="logo">吃的更好，活的更好</a></h1>
+                <h3>Eat Better, Live Better</h3>
+          </div>
+        <% } %>
     
     </div>
   </div>
