@@ -29,12 +29,12 @@ comments: true
 团队目前共有7名成员，包括三名男生和四名女生(掌声~)
 
 1. [于光明](https://github.com/ygm125): 团队领导
-1. [曲双如](https://github.com/qushuangru): Life begins at the end of your comfort zone.
+1. [曲双如](https://github.com/qushuangru):
 1. [聂绎静](https://github.com/sanshuiyijing):
-1. [赵启泽](https://github.com/zhaoqize): 逍遥游
-1. [吕贝贝](https://github.com/yayalovee): 想吃煎饼…
+1. [赵启泽](https://github.com/zhaoqize):
+1. [吕贝贝](https://github.com/yayalovee):
 1. [杨倩慧](https://github.com/sarayqh):
-1. [李亚蔚](https://github.com/Lie8466): 2016年7月入坑前端，2017年7月加入商企通前端。
+1. [李亚蔚](https://github.com/Lie8466):
 
 
 # 团队照片
