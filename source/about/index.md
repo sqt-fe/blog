@@ -30,22 +30,9 @@ comments: true
 
 
 
-
-# 团队成员
-
-
-*  [于光明](https://github.com/ygm125): 
-*  [曲双如](https://github.com/qushuangru):
-*  [聂绎静](https://github.com/sanshuiyijing):
-*  [赵启泽](https://github.com/zhaoqize):
-*  [吕贝贝](https://github.com/yayalovee):
-*  [杨倩慧](https://github.com/sarayqh):
-*  [李亚蔚](https://github.com/Lie8466):
-
-
 # 团队照片
 
-![](http://p0.meituan.net/codeman/41a8080fa675c7e4d14cd9120a517d4f4536.png)
+![](//awp-assets.meituan.net/hfe/fep/53e94d80583f3da48a96996b39147ac4/IMG_1053.JPG)
 
 # 联系我们
 
