@@ -4,9 +4,8 @@ tags:
 categories: 原生开发
 date: 2017-11-21 15:54:00
 ---
-> ![](http://images2017.cnblogs.com/blog/743207/201708/743207-20170815160450475-868670826.png)
 
-<!--more-->
+
 
 ## weex概念与特性
 
@@ -15,12 +14,19 @@ date: 2017-11-21 15:54:00
 最形象的理解就是类似`react native`。
 
 Weex几大特点：
+
+
 **1.帮助你构建原生应用**
 与 Web App、HTML5 App 或 hybrid App 不同，您可以使用 Weex 构建一个真正的原生应用。更贴心的是你的代码只需使用 HTML、CSS、JavaScript 可以构建原生应用，上手非常简单。但实际上，应用的底层是 Objective-C 或 Java， 同时，Weex 提供很多 native 组件或模块供开发人员使用。
+
 **2.一次编写，多端运行**
 Weex 提供强大的跨平台能力，可以使用相同的 API 开发 Web，Android 和 iOS 应用。 同时，我们对接口了丰富的扩展能力。 这样，当您需要扩展原生组件或模块时，这将非常方便。
+
+<!--more-->
+
 **3.支持 Vue 语法**
 Weex 遵循 Web 标准，同时支持 vue.js 的语法。因此，您可以使用 vue.js 语法来开发应用程序
+
 
 ## weexpack
 
