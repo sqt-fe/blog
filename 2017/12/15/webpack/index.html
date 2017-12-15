@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  -->
+  
+  <title>webpack初识 | 商企通前端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="webpack" />
+  
+  
+  
+  
+  <meta name="description" content="webpack初识1、换个角度看webpack近年来，前端技术蓬勃发展，我们想在js更方便的实现html , 社区就出现了jsx,我们觉得原生的css不够好用，社区就提出了scss,less，针对前端项目越来越强的模块化开发需求，社区出现了AMD,CommonJS,ES2015 import等等方案。遗憾的是，这些方案大多并不直接被浏览器支持，往往伴随这些方案而生的还有另外一些，让这些新技术应用于">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack初识">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/webpack/index.html">
+<meta property="og:site_name" content="商企通前端">
+<meta property="og:description" content="webpack初识1、换个角度看webpack近年来，前端技术蓬勃发展，我们想在js更方便的实现html , 社区就出现了jsx,我们觉得原生的css不够好用，社区就提出了scss,less，针对前端项目越来越强的模块化开发需求，社区出现了AMD,CommonJS,ES2015 import等等方案。遗憾的是，这些方案大多并不直接被浏览器支持，往往伴随这些方案而生的还有另外一些，让这些新技术应用于">
+<meta property="og:image" content="https://doc.webpack-china.org/bf093af83ee5548ff10fef24927b7cd2.svg">
+<meta property="og:updated_time" content="2017-12-15T03:03:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack初识">
+<meta name="twitter:description" content="webpack初识1、换个角度看webpack近年来，前端技术蓬勃发展，我们想在js更方便的实现html , 社区就出现了jsx,我们觉得原生的css不够好用，社区就提出了scss,less，针对前端项目越来越强的模块化开发需求，社区出现了AMD,CommonJS,ES2015 import等等方案。遗憾的是，这些方案大多并不直接被浏览器支持，往往伴随这些方案而生的还有另外一些，让这些新技术应用于">
+<meta name="twitter:image" content="https://doc.webpack-china.org/bf093af83ee5548ff10fef24927b7cd2.svg">
+  
+    <link rel="alternate" href="/atom.xml" title="商企通前端" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="border-width: 0;" href="https://sqt-fe.github.io">
+                <p>商企通前端</p>
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-webpack" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      webpack初识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/12/15/webpack/" class="article-date">
+	  <time datetime="2017-12-15T02:57:09.000Z" itemprop="datePublished">2017-12-15</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="webpack初识"><a href="#webpack初识" class="headerlink" title="webpack初识"></a>webpack初识</h2><h3 id="1、换个角度看webpack"><a href="#1、换个角度看webpack" class="headerlink" title="1、换个角度看webpack"></a>1、换个角度看webpack</h3><p>近年来，前端技术蓬勃发展，我们想在js更方便的实现html , 社区就出现了jsx,我们觉得原生的css不够好用，社区就提出了scss,less，针对前端项目越来越强的模块化开发需求，社区出现了AMD,CommonJS,ES2015 import等等方案。遗憾的是，这些方案大多并不直接被浏览器支持，往往伴随这些方案而生的还有另外一些，让这些新技术应用于浏览器的方案，我们用babel来转换下一代的js，转换jsx；我们用各种工具转换scss,less为css；我们发现项目越来越复杂，代码体积越来越大，又要开始寻找各种优化，压缩，分割方案。前端工程化这个过程，让我们大费精力。我们就在寻找前端模块化解决方案的过程中知晓了webpack。<br><a id="more"></a></p>
+<h3 id="2、什么是webpack？（官网描述）"><a href="#2、什么是webpack？（官网描述）" class="headerlink" title="2、什么是webpack？（官网描述）"></a>2、什么是webpack？（官网描述）</h3><p><img src="https://doc.webpack-china.org/bf093af83ee5548ff10fef24927b7cd2.svg" alt="webpack官网图片"></p>
+<p>大话webpack：</p>
+<ul>
+<li>webpack 是一个现代 JavaScript 应用程序的模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成少量的 bundle - 通常只有一个，由浏览器加载。</li>
+<li>Webpack的工作方式就是把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个浏览器可识别的JavaScript文件。</li>
+<li>webpack是一个模块化打包工具，使用js作为载体将所有静态资源打包在一起，支持的loader和plugin等能对各种静态资源进行预处理，极大地方便了前端的工程化开发。</li>
+<li>webpack是一个打包模块化js的工具，可以通过loader转换文件，通过plugin扩展功能。</li>
+</ul>
+<h2 id="webpack核心"><a href="#webpack核心" class="headerlink" title="webpack核心"></a>webpack核心</h2><p>它是高度可配置的，先理解四个核心概念：入口(entry)、输出(output)、loader、插件(plugins)。</p>
+<h3 id="入口（Entry）"><a href="#入口（Entry）" class="headerlink" title="入口（Entry）"></a>入口（Entry）</h3><p>入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。每个依赖项随即被处理，最后输出到称之为 bundles 的文件中；<br>可以指定一个或多个入口文件；</p>
+<h3 id="出口（Output）"><a href="#出口（Output）" class="headerlink" title="出口（Output）"></a>出口（Output）</h3><p>output 属性告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件。你可以通过在配置中指定一个 output 字段，来配置这些处理过程；</p>
+<h3 id="加载器（Loader）"><a href="#加载器（Loader）" class="headerlink" title="加载器（Loader）"></a>加载器（Loader）</h3><p>loader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。loader 可以将所有类型的文件转换为 webpack 能够处理的有效模块，然后你就可以利用 webpack 的打包能力，对它们进行处理。</p>
+<p>在 webpack 的配置中 loader 有两个目标:</p>
+<ul>
+<li>识别出应该被对应的 loader 进行转换的那些文件。(使用 test 属性)</li>
+<li>转换这些文件，从而使其能够被添加到依赖图中（并且最终添加到 bundle 中）(use 属性)</li>
+</ul>
+<h3 id="插件（Plugins）"><a href="#插件（Plugins）" class="headerlink" title="插件（Plugins）"></a>插件（Plugins）</h3><p>loader 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。</p>
+<p>想要使用一个插件，你只需要 require() 它，然后把它添加到 plugins 数组中。多数插件可以通过选项(option)自定义。你也可以在一个配置文件中因为不同目的而多次使用同一个插件，这时需要通过使用 new 操作符来创建它的一个实例。</p>
+<h2 id="简要分析webpack打包后代码"><a href="#简要分析webpack打包后代码" class="headerlink" title="简要分析webpack打包后代码"></a>简要分析webpack打包后代码</h2><p> 1、一个立即执行函数</p>
+<p> <code>(function(modules){})([function(){},function(){}]);</code></p>
+<p> 2、匿名函数里面干了什么</p>
+<p> 定义了一个对象：<br> <code>installedModules = {}</code></p>
+<p>定义了一个函数：<code>__webpack_require__(moduleId){}</code></p>
+<p><code>return __webpack_require__(0)</code></p>
+<p>3、<strong>webpack_require</strong>干了什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function __webpack_require__(moduleId) &#123;</span><br><span class="line">    // Check if module is in cache</span><br><span class="line">    if(installedModules[moduleId]) &#123;</span><br><span class="line">        return installedModules[moduleId].exports;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    // Create a new module (and put it into the cache)</span><br><span class="line">    var module = installedModules[moduleId] = &#123;</span><br><span class="line">        i: moduleId,</span><br><span class="line">        l: false,</span><br><span class="line">        exports: &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  </span><br><span class="line">    // Execute the module function</span><br><span class="line">    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);</span><br><span class="line">  </span><br><span class="line">    // Flag the module as loaded</span><br><span class="line">    module.l = true;</span><br><span class="line"> </span><br><span class="line">    // Return the exports of the module</span><br><span class="line">    return module.exports;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>call能确保当模块中使用this的时候，this总是指向module.exports的：</p>
+<p><code>modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);</code></p>
+<h2 id="辅助开发技巧"><a href="#辅助开发技巧" class="headerlink" title="辅助开发技巧"></a>辅助开发技巧</h2><p>1、简化路径，定义路径别名：</p>
+<ul>
+<li>resolve.alias：创建 import 或 require 的别名，来确保模块引入变得更简单；</li>
+<li>resolve.extensions：自动解析确定的扩展，能够使用户在引入模块的时候不带扩展；</li>
+</ul>
+<p>2、webpack中常见的占位符:</p>
+<ul>
+<li>[name]：代表打包后文件的名称，在entry或代码中(之后会看到)确定；</li>
+<li>[id]：webpack给块分配的内部chunk id，如果你没有隐藏，你能在打包后的命令行中看到；</li>
+<li>[hash]：每次构建过程中，生成的唯一 hash 值；</li>
+<li>[chunkhash]： 依据于打包生成文件内容的 hash 值,内容不变，值不变；</li>
+<li>[ext]： 资源扩展名,如js,jsx,png等等；</li>
+</ul>
+<p>3、loader还可以实现这些：</p>
+<ul>
+<li>转换编译：script-loader/babel-loader/ts-loader/coffee-loader等。</li>
+<li>处理样式：style-loader/css-loader/less-loader/sass-loader/postcss-loader等。</li>
+<li>处理文件：raw-loader/url-loader/file-loader/等。</li>
+<li>处理数据：csv-loader/xml-loader等。</li>
+<li>处理模板语言：html-loader/pug-loader/jade-loader/markdown-loader等。</li>
+<li>清理和测试：mocha-loader/eslint-loader等。</li>
+</ul>
+<p>4、CommonsChunkPlugin 提取公共模块的插件</p>
+<ul>
+<li><code>new webpack.optimize.CommonsChunkPlugin(options)</code></li>
+<li>通过将公共模块拆出来，最终合成的文件能够在最开始的时候加载一次，以便存起来到缓存中供后续使用。这个带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。</li>
+<li></li>
+</ul>
+<h3 id="扩展文档："><a href="#扩展文档：" class="headerlink" title="扩展文档："></a>扩展文档：</h3><p>如何写一个插件：<a href="https://github.com/webpack/docs/wiki/how-to-write-a-plugin" target="_blank" rel="noopener">https://github.com/webpack/docs/wiki/how-to-write-a-plugin</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8zMTkzOS84NTAz">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/09/what-pwa/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">讲讲PWA</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack初识"><span class="nav-number">1.</span> <span class="nav-text"><a href="#webpack&#x521D;&#x8BC6;" class="headerlink" title="webpack&#x521D;&#x8BC6;"></a>webpack&#x521D;&#x8BC6;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、换个角度看webpack"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1&#x3001;&#x6362;&#x4E2A;&#x89D2;&#x5EA6;&#x770B;webpack" class="headerlink" title="1&#x3001;&#x6362;&#x4E2A;&#x89D2;&#x5EA6;&#x770B;webpack"></a>1&#x3001;&#x6362;&#x4E2A;&#x89D2;&#x5EA6;&#x770B;webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、什么是webpack？（官网描述）"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#2&#x3001;&#x4EC0;&#x4E48;&#x662F;webpack&#xFF1F;&#xFF08;&#x5B98;&#x7F51;&#x63CF;&#x8FF0;&#xFF09;" class="headerlink" title="2&#x3001;&#x4EC0;&#x4E48;&#x662F;webpack&#xFF1F;&#xFF08;&#x5B98;&#x7F51;&#x63CF;&#x8FF0;&#xFF09;"></a>2&#x3001;&#x4EC0;&#x4E48;&#x662F;webpack&#xFF1F;&#xFF08;&#x5B98;&#x7F51;&#x63CF;&#x8FF0;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack核心"><span class="nav-number">2.</span> <span class="nav-text"><a href="#webpack&#x6838;&#x5FC3;" class="headerlink" title="webpack&#x6838;&#x5FC3;"></a>webpack&#x6838;&#x5FC3;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#入口（Entry）"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x5165;&#x53E3;&#xFF08;Entry&#xFF09;" class="headerlink" title="&#x5165;&#x53E3;&#xFF08;Entry&#xFF09;"></a>&#x5165;&#x53E3;&#xFF08;Entry&#xFF09;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出口（Output）"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x51FA;&#x53E3;&#xFF08;Output&#xFF09;" class="headerlink" title="&#x51FA;&#x53E3;&#xFF08;Output&#xFF09;"></a>&#x51FA;&#x53E3;&#xFF08;Output&#xFF09;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载器（Loader）"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x52A0;&#x8F7D;&#x5668;&#xFF08;Loader&#xFF09;" class="headerlink" title="&#x52A0;&#x8F7D;&#x5668;&#xFF08;Loader&#xFF09;"></a>&#x52A0;&#x8F7D;&#x5668;&#xFF08;Loader&#xFF09;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件（Plugins）"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;&#xFF08;Plugins&#xFF09;" class="headerlink" title="&#x63D2;&#x4EF6;&#xFF08;Plugins&#xFF09;"></a>&#x63D2;&#x4EF6;&#xFF08;Plugins&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简要分析webpack打包后代码"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7B80;&#x8981;&#x5206;&#x6790;webpack&#x6253;&#x5305;&#x540E;&#x4EE3;&#x7801;" class="headerlink" title="&#x7B80;&#x8981;&#x5206;&#x6790;webpack&#x6253;&#x5305;&#x540E;&#x4EE3;&#x7801;"></a>&#x7B80;&#x8981;&#x5206;&#x6790;webpack&#x6253;&#x5305;&#x540E;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助开发技巧"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x8F85;&#x52A9;&#x5F00;&#x53D1;&#x6280;&#x5DE7;" class="headerlink" title="&#x8F85;&#x52A9;&#x5F00;&#x53D1;&#x6280;&#x5DE7;"></a>&#x8F85;&#x52A9;&#x5F00;&#x53D1;&#x6280;&#x5DE7;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展文档："><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x6269;&#x5C55;&#x6587;&#x6863;&#xFF1A;" class="headerlink" title="&#x6269;&#x5C55;&#x6587;&#x6863;&#xFF1A;"></a>&#x6269;&#x5C55;&#x6587;&#x6863;&#xFF1A;</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 商企通前端 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css">
+  <script src="https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            商企通前端
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 商企通前端 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0"" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

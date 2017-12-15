@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  -->
+  
+  <title>node+express实现图片上传功能 | 商企通前端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="node" />
+  
+  
+  
+  
+  <meta name="description" content="概述本篇文章适用于node刚刚入门的读者。 本篇文章使用node+express实现了一个简单的图片上传功能：用户点击图片上传，会跳转到上传成功页面并展示上传的图片。">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node+express实现图片上传功能">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/node-express/index.html">
+<meta property="og:site_name" content="商企通前端">
+<meta property="og:description" content="概述本篇文章适用于node刚刚入门的读者。 本篇文章使用node+express实现了一个简单的图片上传功能：用户点击图片上传，会跳转到上传成功页面并展示上传的图片。">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/25/15ff0e22bfb38f51?w=756&h=176&f=png&s=25194">
+<meta property="og:updated_time" content="2017-12-14T11:57:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node+express实现图片上传功能">
+<meta name="twitter:description" content="概述本篇文章适用于node刚刚入门的读者。 本篇文章使用node+express实现了一个简单的图片上传功能：用户点击图片上传，会跳转到上传成功页面并展示上传的图片。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/11/25/15ff0e22bfb38f51?w=756&h=176&f=png&s=25194">
+  
+    <link rel="alternate" href="/atom.xml" title="商企通前端" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="border-width: 0;" href="https://sqt-fe.github.io">
+                <p>商企通前端</p>
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-node-express" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      node+express实现图片上传功能
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/11/27/node-express/" class="article-date">
+	  <time datetime="2017-11-27T05:27:26.000Z" itemprop="datePublished">2017-11-27</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本篇文章适用于node刚刚入门的读者。</p>
+<p>本篇文章使用node+express实现了一个简单的图片上传功能：用户点击图片上传，会跳转到上传成功页面并展示上传的图片。</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直想找资料入门node，试着一步步实现一个功能，都没有合适的资料。直到看到<a href="https://www.nodebeginner.org/index-zh-cn.html#" target="_blank" rel="noopener">https://www.nodebeginner.org/index-zh-cn.html#</a> ，这本书教你如何<strong>一步一步</strong>结合基本的API搭建一个简单的应用，实现了简单的图片上传功能。我看完之后终于感觉自己<strong>基本入门</strong>node了。文章中有附源码地址，<a href="https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application" target="_blank" rel="noopener">https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application</a> ，如果你感觉还没有入门node，可以试试这本书。</p>
+<p>当然我的建议是跟着教程一步步修改代码，而不是直接将源码clone下来。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>文章到后面给出页面展示的html是以<code>response.write(body);</code>的方式写的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function start(response) &#123;</span><br><span class="line">console.log(&quot;Request handler &apos;start&apos; was called.&quot;);</span><br><span class="line"></span><br><span class="line">var body = &apos;&lt;html&gt;&apos;+</span><br><span class="line">&apos;&lt;head&gt;&apos;+</span><br><span class="line">&apos;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; &apos;+</span><br><span class="line">&apos;charset=UTF-8&quot; /&gt;&apos;+</span><br><span class="line">&apos;&lt;/head&gt;&apos;+</span><br><span class="line">&apos;&lt;body&gt;&apos;+</span><br><span class="line">&apos;&lt;form action=&quot;/upload&quot; enctype=&quot;multipart/form-data&quot; &apos;+</span><br><span class="line">&apos;method=&quot;post&quot;&gt;&apos;+</span><br><span class="line">&apos;&lt;input type=&quot;file&quot; name=&quot;upload&quot; multiple=&quot;multiple&quot;&gt;&apos;+</span><br><span class="line">&apos;&lt;input type=&quot;submit&quot; value=&quot;Upload file&quot; /&gt;&apos;+</span><br><span class="line">&apos;&lt;/form&gt;&apos;+</span><br><span class="line">&apos;&lt;/body&gt;&apos;+</span><br><span class="line">&apos;&lt;/html&gt;&apos;;</span><br><span class="line"></span><br><span class="line">response.writeHead(200, &#123;&quot;Content-Type&quot;: &quot;text/html&quot;&#125;);</span><br><span class="line">response.write(body);</span><br><span class="line">response.end();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际应用中肯定不能以这样的方式写html文件，所以接下来就教你用node+express实现同样的功能，使我们的代码看起来更优雅</p>
+<h2 id="node-express实现图片上传功能"><a href="#node-express实现图片上传功能" class="headerlink" title="node+express实现图片上传功能"></a>node+express实现图片上传功能</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>mac+node(v9.2.0)+express</p>
+<h3 id="安装express"><a href="#安装express" class="headerlink" title="安装express"></a>安装express</h3><blockquote>
+<p>express官网:<a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">http://www.expressjs.com.cn/</a></p>
+</blockquote>
+<p>新建文件夹<code>node-app</code>，在文件夹下新建<code>package.json</code>文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;node-app&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.1&quot;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;express&quot;: &quot;^4.16.2&quot;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行<code>npm install</code>。新建<code>app.js</code>，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function (req, res) &#123;</span><br><span class="line">    res.send(&apos;Hello World!&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var server = app.listen(3000, function () &#123;</span><br><span class="line">    var host = server.address().address;</span><br><span class="line">    var port = server.address().port;</span><br><span class="line"></span><br><span class="line">    console.log(&apos;Example app listening at http://%s:%s&apos;, host, port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行<code>node app.js</code>，打开<a href="localhost:3000" target="_blank" rel="noopener">localhost:3000</a>，应用已经跑起来了</p>
+<h3 id="利用-Express-托管静态文件"><a href="#利用-Express-托管静态文件" class="headerlink" title="利用 Express 托管静态文件"></a>利用 Express 托管静态文件</h3><p>下面利用 Express 托管静态文件，在<code>node-app</code>下新建文件夹<code>public</code>，新建两个html文件</p>
+<ul>
+<li>start.html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;</span><br><span class="line">    &lt;title&gt;请上传您的文件&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;./upload.html&quot; enctype=&quot;multipart/form-data&quot; method=&quot;get&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;upload&quot; multiple=&quot;multiple&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Upload file&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>upload.html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;</span><br><span class="line">    &lt;title&gt;上传成功&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;上传成功&lt;/h1&gt;</span><br><span class="line">    &lt;img  src=&quot;/public/test.png&quot;/&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>修改<code>app.js</code>，增加<code>app.use(&#39;/public&#39;, express.static(&#39;public&#39;));</code>。修改后<code>app.js</code>如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function (req, res) &#123;</span><br><span class="line">    res.send(&apos;Hello World!&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(&apos;/public&apos;, express.static(&apos;public&apos;));</span><br><span class="line"></span><br><span class="line">var server = app.listen(3000, function () &#123;</span><br><span class="line">    var host = server.address().address;</span><br><span class="line">    var port = server.address().port;</span><br><span class="line"></span><br><span class="line">    console.log(&apos;Example app listening at http://%s:%s&apos;, host, port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>现在，public 目录下面的文件就可以访问了。</p>
+<blockquote>
+<p>参考文档：<a href="http://www.expressjs.com.cn/starter/static-files.html" target="_blank" rel="noopener">http://www.expressjs.com.cn/starter/static-files.html</a></p>
+</blockquote>
+<p>重启node服务，打开<br><code>http://localhost:3000/public/start.html</code>，选择文件上传之后，页面就会自动跳转到上传成功页面</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/11/25/15ff0e22bfb38f51?w=756&amp;h=176&amp;f=png&amp;s=25194" alt=""></p>
+<h3 id="处理上传的图片"><a href="#处理上传的图片" class="headerlink" title="处理上传的图片"></a>处理上传的图片</h3><p>使用模块<code>formidable</code>处理请求数据。在<code>package.json</code>中增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">  &quot;express&quot;: &quot;^4.16.2&quot;,</span><br><span class="line">  &quot;formidable&quot;: &quot;^1.1.1&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行<code>npm install</code>。</p>
+<p>文件上传自然要用到post请求,更改<code>start.html</code>，改为<code>method=&quot;post&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;/upload&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;upload&quot; multiple=&quot;multiple&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Upload file&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>处理post请求用到的Express的路由</p>
+<blockquote>
+<p>参考 <a href="http://www.expressjs.com.cn/starter/basic-routing.html" target="_blank" rel="noopener">http://www.expressjs.com.cn/starter/basic-routing.html</a></p>
+</blockquote>
+<p>修改后的<code>app.js</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line">var formidable = require(&quot;formidable&quot;);</span><br><span class="line">fs = require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function (req, res) &#123;</span><br><span class="line">    res.send(&apos;Hello World!&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(&apos;/public&apos;, express.static(&apos;public&apos;));</span><br><span class="line"></span><br><span class="line">app.post(&apos;/upload&apos;, function (req, res) &#123;</span><br><span class="line">    var form = new formidable.IncomingForm();</span><br><span class="line">    console.log(&quot;about to parse&quot;);</span><br><span class="line">    form.parse(req, function(error, fields, files) &#123;</span><br><span class="line">        console.log(&quot;parsing done&quot;);</span><br><span class="line">        console.log(files.upload.path);</span><br><span class="line">        fs.writeFileSync(&quot;public/test.png&quot;, fs.readFileSync(files.upload.path));</span><br><span class="line">        res.redirect(&quot;/public/upload.html&quot;) ;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var server = app.listen(3000, function () &#123;</span><br><span class="line">    var host = server.address().address;</span><br><span class="line">    var port = server.address().port;</span><br><span class="line"></span><br><span class="line">    console.log(&apos;Example app listening at http://%s:%s&apos;, host, port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在<code>public</code>文件夹下新增<code>upload.html</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;</span><br><span class="line">    &lt;title&gt;上传成功&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;上传成功&lt;/h1&gt;</span><br><span class="line">    &lt;img  src=&quot;/public/test.png&quot;/&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>嗯，大功告成啦。重新启动服务，打开 <a href="http://localhost:3000/public/start.html" target="_blank" rel="noopener">http://localhost:3000/public/start.html</a> 选择一个图片上传，就能看到自己上传的图片了！</p>
+<p>源码附上，<a href="https://github.com/Lie8466/node-app/tree/node-express" target="_blank" rel="noopener">https://github.com/Lie8466/node-app/tree/node-express</a></p>
+<p>感谢您的阅读！这是我的学习过程，希望对你有所帮助~</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://www.nodebeginner.org/index-zh-cn.html#" target="_blank" rel="noopener">https://www.nodebeginner.org/index-zh-cn.html#</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8zMTkzOS84NTAz">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/09/what-pwa/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          讲讲PWA
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/21/weex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Weex的原生开发实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6982;&#x8FF0;" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x95EE;&#x9898;" class="headerlink" title="&#x95EE;&#x9898;"></a>&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-express实现图片上传功能"><span class="nav-number">4.</span> <span class="nav-text"><a href="#node-express&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x4E0A;&#x4F20;&#x529F;&#x80FD;" class="headerlink" title="node+express&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x4E0A;&#x4F20;&#x529F;&#x80FD;"></a>node+express&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x4E0A;&#x4F20;&#x529F;&#x80FD;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;" class="headerlink" title="&#x73AF;&#x5883;"></a>&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装express"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;express" class="headerlink" title="&#x5B89;&#x88C5;express"></a>&#x5B89;&#x88C5;express</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-Express-托管静态文件"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x5229;&#x7528;-Express-&#x6258;&#x7BA1;&#x9759;&#x6001;&#x6587;&#x4EF6;" class="headerlink" title="&#x5229;&#x7528; Express &#x6258;&#x7BA1;&#x9759;&#x6001;&#x6587;&#x4EF6;"></a>&#x5229;&#x7528; Express &#x6258;&#x7BA1;&#x9759;&#x6001;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理上传的图片"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#&#x5904;&#x7406;&#x4E0A;&#x4F20;&#x7684;&#x56FE;&#x7247;" class="headerlink" title="&#x5904;&#x7406;&#x4E0A;&#x4F20;&#x7684;&#x56FE;&#x7247;"></a>&#x5904;&#x7406;&#x4E0A;&#x4F20;&#x7684;&#x56FE;&#x7247;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x6587;&#x6863;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x6863;"></a>&#x53C2;&#x8003;&#x6587;&#x6863;</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 商企通前端 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css">
+  <script src="https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            商企通前端
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 商企通前端 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0"" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

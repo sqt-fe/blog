@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  -->
+  
+  <title>讲讲pwa | 商企通前端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="pwa" />
+  
+  
+  
+  
+  <meta name="description" content="背景文章2017 前端大事件和趋势回顾，2018 何去何从？中提到了2017年前端值得关注的十大事件，其中就提到了PWA。">
+<meta name="keywords" content="pwa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="讲讲PWA">
+<meta property="og:url" content="http://yoursite.com/2017/12/09/what-pwa/index.html">
+<meta property="og:site_name" content="商企通前端">
+<meta property="og:description" content="背景文章2017 前端大事件和趋势回顾，2018 何去何从？中提到了2017年前端值得关注的十大事件，其中就提到了PWA。">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/9/16039396096bdcf6?w=747&h=240&f=png&s=38487">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/9/160393cb31d1ccfb?w=2494&h=588&f=png&s=128215">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/9/160393d622433702?w=726&h=629&f=png&s=97827">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/9/1603946bc58c95b3?w=1438&h=430&f=png&s=149063">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/9/160394ac4f074f79?w=677&h=368&f=png&s=64102">
+<meta property="og:updated_time" content="2017-12-14T11:57:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="讲讲PWA">
+<meta name="twitter:description" content="背景文章2017 前端大事件和趋势回顾，2018 何去何从？中提到了2017年前端值得关注的十大事件，其中就提到了PWA。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/12/9/16039396096bdcf6?w=747&h=240&f=png&s=38487">
+  
+    <link rel="alternate" href="/atom.xml" title="商企通前端" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="border-width: 0;" href="https://sqt-fe.github.io">
+                <p>商企通前端</p>
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-what-pwa" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      讲讲PWA
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/12/09/what-pwa/" class="article-date">
+	  <time datetime="2017-12-09T02:40:09.000Z" itemprop="datePublished">2017-12-09</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>文章<a href="http://mp.weixin.qq.com/s/LvooedOYCJzM8G20Tlw0HQ" target="_blank" rel="noopener">2017 前端大事件和趋势回顾，2018 何去何从？</a>中提到了2017年前端值得关注的十大事件，其中就提到了PWA。</p>
+<a id="more"></a>
+<p>大家都知道Native app体验确实很好，下载到手机上之后入口也方便。它也有一些缺点:</p>
+<ul>
+<li>开发成本高(ios和安卓)</li>
+<li>软件上线需要审核</li>
+<li>版本更新需要将新版本上传到不同的应用商店</li>
+<li>想使用一个app就必须去下载才能使用，即使是偶尔需要使用一下下</li>
+</ul>
+<p>而web网页开发成本低，网站更新时上传最新的资源到服务器即可，用手机带的浏览器打开就可以使用。但是出了体验上比Native app还是差一些，还有一些明显的缺点</p>
+<ul>
+<li>手机桌面入口不够便捷，想要进入一个页面必须要记住它的url或者加入书签</li>
+<li>没网络就没响应，不具备离线能力</li>
+<li>不像APP一样能进行消息推送</li>
+</ul>
+<p>那么什么是PWA呢？</p>
+<h2 id="What’s-PWA"><a href="#What’s-PWA" class="headerlink" title="What’s PWA?"></a>What’s PWA?</h2><p>PWA全称Progressive Web App，即渐进式WEB应用。</p>
+<p>一个 PWA 应用首先是一个网页, 可以通过 Web 技术编写出一个网页应用. 随后添加上 App Manifest 和 Service Worker 来实现 PWA 的安装和离线等功能<br>解决了哪些问题？</p>
+<ul>
+<li>可以添加至主屏幕，点击主屏幕图标可以实现启动动画以及隐藏地址栏</li>
+<li>实现离线缓存功能，即使用户手机没有网络，依然可以使用一些离线功能</li>
+<li>实现了消息推送</li>
+</ul>
+<p>它解决了上述提到的问题，这些特性将使得 Web 应用渐进式接近原生 App。</p>
+<h2 id="PWA的实现"><a href="#PWA的实现" class="headerlink" title="PWA的实现"></a>PWA的实现</h2><h3 id="Manifest实现添加至主屏幕"><a href="#Manifest实现添加至主屏幕" class="headerlink" title="Manifest实现添加至主屏幕"></a>Manifest实现添加至主屏幕</h3><p>index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;Minimal PWA&lt;/title&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no&quot; /&gt;</span><br><span class="line">  &lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot; /&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;main.css&quot;&gt;</span><br><span class="line">  &lt;link rel=&quot;icon&quot; href=&quot;/e.png&quot; type=&quot;image/png&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure></p>
+<p>manifest.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;Minimal PWA&quot;, // 必填 显示的插件名称</span><br><span class="line">  &quot;short_name&quot;: &quot;PWA Demo&quot;, // 可选  在APP launcher和新的tab页显示，如果没有设置，则使用name</span><br><span class="line">  &quot;description&quot;: &quot;The app that helps you understand PWA&quot;, //用于描述应用</span><br><span class="line">  &quot;display&quot;: &quot;standalone&quot;, // 定义开发人员对Web应用程序的首选显示模式。standalone模式会有单独的</span><br><span class="line">  &quot;start_url&quot;: &quot;/&quot;, // 应用启动时的url</span><br><span class="line">  &quot;theme_color&quot;: &quot;#313131&quot;, // 桌面图标的背景色</span><br><span class="line">  &quot;background_color&quot;: &quot;#313131&quot;, // 为web应用程序预定义的背景颜色。在启动web应用程序和加载应用程序的内容之间创建了一个平滑的过渡。</span><br><span class="line">  &quot;icons&quot;: [ // 桌面图标，是一个数组</span><br><span class="line">    &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/lowres.webp&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;48x48&quot;,  // 以空格分隔的图片尺寸</span><br><span class="line">    &quot;type&quot;: &quot;image/webp&quot;  // 帮助userAgent快速排除不支持的类型</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/lowres&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;48x48&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/hd_hi.ico&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;72x72 96x96 128x128 256x256&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/hd_hi.svg&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;72x72&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Manifest参考文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Manifest" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/Manifest</a></p>
+<p>可以打开网站<a href="https://developers.google.cn/web/showcase/2015/chrome-dev-summit" target="_blank" rel="noopener">https://developers.google.cn/web/showcase/2015/chrome-dev-summit</a>查看添加至主屏幕的动图。</p>
+<p>如果用的是安卓手机，可以下载chrome浏览器自己操作看看</p>
+</blockquote>
+<h3 id="service-worker实现离线缓存"><a href="#service-worker实现离线缓存" class="headerlink" title="service worker实现离线缓存"></a>service worker实现离线缓存</h3><h4 id="什么是service-worker"><a href="#什么是service-worker" class="headerlink" title="什么是service worker"></a>什么是service worker</h4><p>Service Worker 是 Chrome 团队提出和力推的一个 WEB API，用于给 web 应用提供高级的可持续的后台处理能力。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/9/16039396096bdcf6?w=747&amp;h=240&amp;f=png&amp;s=38487" alt=""></p>
+<p>Service Workers 就像介于服务器和网页之间的拦截器，能够拦截进出的HTTP 请求，从而完全控制你的网站。</p>
+<p><strong>最主要的特点</strong></p>
+<ul>
+<li>在页面中注册并安装成功后，运行于浏览器后台，不受页面刷新的影响，可以监听和截拦作用域范围内所有页面的 HTTP 请求。</li>
+<li>网站必须使用 HTTPS。除了使用本地开发环境调试时(如域名使用 localhost)</li>
+<li>运行于浏览器后台，可以控制打开的作用域范围下所有的页面请求</li>
+<li>单独的作用域范围，单独的运行环境和执行线程</li>
+<li>不能操作页面 DOM。但可以通过事件机制来处理</li>
+<li>事件驱动型服务线程</li>
+</ul>
+<blockquote>
+<p>为什么要求网站必须是HTTPS的，大概是因为service worker权限太大能拦截所有页面的请求吧，如果http的网站安装service worker很容易被攻击</p>
+</blockquote>
+<p><strong>浏览器支持情况</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/9/160393cb31d1ccfb?w=2494&amp;h=588&amp;f=png&amp;s=128215" alt=""></p>
+<blockquote>
+<p>浏览器支持情况详见： <a href="https://caniuse.com/#feat=serviceworkers" target="_blank" rel="noopener">https://caniuse.com/#feat=serviceworkers</a></p>
+</blockquote>
+<p><strong>生命周期</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/9/160393d622433702?w=726&amp;h=629&amp;f=png&amp;s=97827" alt=""></p>
+<p>当用户首次导航至 URL 时，服务器会返回响应的网页。</p>
+<ul>
+<li>第1步:当你调用 register() 函数时， Service Worker 开始下载。</li>
+<li>第2步:在注册过程中，浏览器会下载、解析并执行 Service Worker ()。如果在此步骤中出现任何错误，register() 返回的 promise 都会执行 reject 操作，并且 Service Worker 会被废弃。</li>
+<li>第3步:一旦 Service Worker 成功执行了，install 事件就会激活</li>
+<li>第4步:安装完成，Service Worker 便会激活，并控制在其范围内的一切。如果生命周期中的所有事件都成功了，Service Worker 便已准备就绪，随时可以使用了！</li>
+</ul>
+<blockquote>
+<p><a href="chrome://serviceworker-internals" target="_blank" rel="noopener">chrome://serviceworker-internals</a> 来了解当前浏览器中所有已安装Service Worker的详细情况</p>
+</blockquote>
+<h4 id="HTTP缓存与service-worker缓存"><a href="#HTTP缓存与service-worker缓存" class="headerlink" title="HTTP缓存与service worker缓存"></a>HTTP缓存与service worker缓存</h4><ul>
+<li>HTTP缓存</li>
+</ul>
+<p>Web 服务器可以使用 Expires 首部来通知 Web 客户端，它可以使用资源的当前副本，直到指定的“过期时间”。反过来，浏览器可以缓存此资源，并且只有在有效期满后才会再次检查新版本。<br>使用 HTTP 缓存意味着你要依赖服务器来告诉你何时缓存资源和何时过期。</p>
+<ul>
+<li>service worker缓存</li>
+</ul>
+<p>Service Workers 的强大在于它们拦截 HTTP 请求的能力<br>进入任何传入的 HTTP 请求，并决定想要如何响应。在你的 Service Worker 中，可以编写逻辑来决定想要缓存的资源，以及需要满足什么条件和资源需要缓存多久。一切尽归你掌控！</p>
+<h4 id="实现离线缓存"><a href="#实现离线缓存" class="headerlink" title="实现离线缓存"></a>实现离线缓存</h4><p>index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Hello Caching World!&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;!-- Image --&gt;</span><br><span class="line">    &lt;img src=&quot;/images/hello.png&quot; /&gt;</span><br><span class="line">    &lt;!-- JavaScript --&gt;</span><br><span class="line">    &lt;script async src=&quot;/js/script.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      // 注册 service worker</span><br><span class="line">      if (&apos;serviceWorker&apos; in navigator) &#123;</span><br><span class="line">        navigator.serviceWorker.register(&apos;/service-worker.js&apos;, &#123;scope: &apos;/&apos;&#125;).then(function (registration) &#123;</span><br><span class="line">          // 注册成功</span><br><span class="line">          console.log(&apos;ServiceWorker registration successful with scope: &apos;, registration.scope);</span><br><span class="line">        &#125;).catch(function (err) &#123;</span><br><span class="line">          // 注册失败 :(</span><br><span class="line">          console.log(&apos;ServiceWorker registration failed: &apos;, err);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：Service Worker 的注册路径决定了其 scope 默认作用页面的范围。<br>如果 service-worker.js 是在 /sw/ 页面路径下，这使得该 Service Worker 默认只会收到 页面/sw/ 路径下的 fetch 事件。<br>如果存放在网站的根路径下，则将会收到该网站的所有 fetch 事件。<br>如果希望改变它的作用域，可在第二个参数设置 scope 范围。示例中将其改为了根目录，即对整个站点生效。</p>
+</blockquote>
+<p>service-worker.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var cacheName = &apos;helloWorld&apos;;     // 缓存的名称</span><br><span class="line">// install 事件，它发生在浏览器安装并注册 Service Worker 时</span><br><span class="line">self.addEventListener(&apos;install&apos;, event =&gt; &#123;</span><br><span class="line">/* event.waitUtil 用于在安装成功之前执行一些预装逻辑</span><br><span class="line"> 但是建议只做一些轻量级和非常重要资源的缓存，减少安装失败的概率</span><br><span class="line"> 安装成功后 ServiceWorker 状态会从 installing 变为 installed */</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    caches.open(cacheName)</span><br><span class="line">    .then(cache =&gt; cache.addAll([    // 如果所有的文件都成功缓存了，便会安装完成。如果任何文件下载失败了，那么安装过程也会随之失败。</span><br><span class="line">      &apos;/js/script.js&apos;,</span><br><span class="line">      &apos;/images/hello.png&apos;</span><br><span class="line">    ]))</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">为 fetch 事件添加一个事件监听器。接下来，使用 caches.match() 函数来检查传入的请求 URL 是否匹配当前缓存中存在的任何内容。如果存在的话，返回缓存的资源。</span><br><span class="line">如果资源并不存在于缓存当中，通过网络来获取资源，并将获取到的资源添加到缓存中。</span><br><span class="line">*/</span><br><span class="line">self.addEventListener(&apos;fetch&apos;, function (event) &#123;</span><br><span class="line">  event.respondWith(</span><br><span class="line">    caches.match(event.request)</span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (response) &#123;</span><br><span class="line">        return response;</span><br><span class="line">      &#125;</span><br><span class="line">      var requestToCache = event.request.clone();  //</span><br><span class="line">      return fetch(requestToCache).then(</span><br><span class="line">        function (response) &#123;</span><br><span class="line">          if (!response || response.status !== 200) &#123;</span><br><span class="line">            return response;</span><br><span class="line">          &#125;</span><br><span class="line">          var responseToCache = response.clone();</span><br><span class="line">          caches.open(cacheName)</span><br><span class="line">            .then(function (cache) &#123;</span><br><span class="line">              cache.put(requestToCache, responseToCache);</span><br><span class="line">            &#125;);</span><br><span class="line">          return response;</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：为什么用request.clone()和response.clone()<br>需要这么做是因为request和response是一个流，它只能消耗一次。因为我们已经通过缓存消耗了一次，然后发起 HTTP 请求还要再消耗一次，所以我们需要在此时克隆请求<br>Clone the request—a request is a stream and can only be consumed once.</p>
+</blockquote>
+<h4 id="调试相关"><a href="#调试相关" class="headerlink" title="调试相关"></a>调试相关</h4><p>chrome浏览器打开<a href="https://googlechrome.github.io/samples/service-worker/basic/index.html" target="_blank" rel="noopener">https://googlechrome.github.io/samples/service-worker/basic/index.html</a>，这是一个实现了service worker离线缓存功能的网站，打开调试工具</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/9/1603946bc58c95b3?w=1438&amp;h=430&amp;f=png&amp;s=149063" alt=""></p>
+<p>介绍一个图中的1.和2.</p>
+<ol>
+<li>勾选可以模拟网站离线情况，勾选后network会有一个黄色警告图标，该网站已经离线。此时刷新页面，页面仍然能够正常显示</li>
+<li>当前service worker的scope。它能够拦截<a href="https://googlechrome.github.io/samples/service-worker/basic/index.html下的请求，同样也能够拦截https://googlechrome.github.io/samples/service-worker/basic/\*/\*.html下的请求" target="_blank" rel="noopener">https://googlechrome.github.io/samples/service-worker/basic/index.html下的请求，同样也能够拦截https://googlechrome.github.io/samples/service-worker/basic/\*/\*.html下的请求</a></li>
+</ol>
+<blockquote>
+<p>调试面板具体代表的什么参看<a href="https://x5.tencent.com/tbs/guide/serviceworker.html" target="_blank" rel="noopener">https://x5.tencent.com/tbs/guide/serviceworker.html</a>的第三部分</p>
+</blockquote>
+<h3 id="serice-worker实现消息推送"><a href="#serice-worker实现消息推送" class="headerlink" title="serice worker实现消息推送"></a>serice worker实现消息推送</h3><p><img src="https://user-gold-cdn.xitu.io/2017/12/9/160394ac4f074f79?w=677&amp;h=368&amp;f=png&amp;s=64102" alt=""></p>
+<ul>
+<li>步骤一、提示用户并获得他们的订阅详细信息</li>
+<li>步骤二、将这些详细信息保存在服务器上</li>
+<li>步骤三、在需要时发送任何消息</li>
+</ul>
+<blockquote>
+<p>不同浏览器需要用不同的推送消息服务器。以 Chrome 上使用 Google Cloud Messaging<gcm> 作为推送服务为例，第一步是注册 applicationServerKey(通过 GCM 注册获取)，并在页面上进行订阅或发起订阅。每一个会话会有一个独立的端点（endpoint），订阅对象的属性(PushSubscription.endpoint) 即为端点值。将端点发送给服务器后，服务器用这一值来发送消息给会话的激活的 Service Worker （通过 GCM 与浏览器客户端沟通）。</gcm></p>
+</blockquote>
+<p><strong>步骤一和步骤二</strong><br>index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Progressive Times&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot;&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      var endpoint;</span><br><span class="line">      var key;</span><br><span class="line">      var authSecret;</span><br><span class="line">      var vapidPublicKey = &apos;BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY&apos;;</span><br><span class="line">      // 方法很复杂，但是可以不用具体看，知识用来转化vapidPublicKey用</span><br><span class="line">      function urlBase64ToUint8Array(base64String) &#123;</span><br><span class="line">        const padding = &apos;=&apos;.repeat((4 - base64String.length % 4) % 4);</span><br><span class="line">        const base64 = (base64String + padding)</span><br><span class="line">          .replace(/\-/g, &apos;+&apos;)</span><br><span class="line">          .replace(/_/g, &apos;/&apos;);</span><br><span class="line">        const rawData = window.atob(base64);</span><br><span class="line">        const outputArray = new Uint8Array(rawData.length);</span><br><span class="line">        for (let i = 0; i &lt; rawData.length; ++i) &#123;</span><br><span class="line">          outputArray[i] = rawData.charCodeAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return outputArray;</span><br><span class="line">      &#125;</span><br><span class="line">      if (&apos;serviceWorker&apos; in navigator) &#123;</span><br><span class="line">        navigator.serviceWorker.register(&apos;sw.js&apos;).then(function (registration) &#123;</span><br><span class="line">          return registration.pushManager.getSubscription()</span><br><span class="line">            .then(function (subscription) &#123;</span><br><span class="line">              if (subscription) &#123;</span><br><span class="line">                return;</span><br><span class="line">              &#125;</span><br><span class="line">              return registration.pushManager.subscribe(&#123;</span><br><span class="line">                  userVisibleOnly: true,</span><br><span class="line">                  applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)</span><br><span class="line">                &#125;)</span><br><span class="line">                .then(function (subscription) &#123;</span><br><span class="line">                  var rawKey = subscription.getKey ? subscription.getKey(&apos;p256dh&apos;) : &apos;&apos;;</span><br><span class="line">                  key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : &apos;&apos;;</span><br><span class="line">                  var rawAuthSecret = subscription.getKey ? subscription.getKey(&apos;auth&apos;) : &apos;&apos;;</span><br><span class="line">                  authSecret = rawAuthSecret ?</span><br><span class="line">                    btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : &apos;&apos;;</span><br><span class="line">                  endpoint = subscription.endpoint;</span><br><span class="line">                  return fetch(&apos;./register&apos;, &#123;</span><br><span class="line">                    method: &apos;post&apos;,</span><br><span class="line">                    headers: new Headers(&#123;</span><br><span class="line">                      &apos;content-type&apos;: &apos;application/json&apos;</span><br><span class="line">                    &#125;),</span><br><span class="line">                    body: JSON.stringify(&#123;</span><br><span class="line">                      endpoint: subscription.endpoint,</span><br><span class="line">                      key: key,</span><br><span class="line">                      authSecret: authSecret,</span><br><span class="line">                    &#125;),</span><br><span class="line">                  &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;).catch(function (err) &#123;</span><br><span class="line">          // 注册失败 :(</span><br><span class="line">          console.log(&apos;ServiceWorker registration failed: &apos;, err);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>步骤三 服务器发送消息给service worker</strong></p>
+<p>app.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">const webpush = require(&apos;web-push&apos;);</span><br><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">var bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line">const app = express();</span><br><span class="line">webpush.setVapidDetails(</span><br><span class="line">  &apos;mailto:contact@deanhume.com&apos;,</span><br><span class="line">  &apos;BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY&apos;,</span><br><span class="line">  &apos;p6YVD7t8HkABoez1CvVJ5bl7BnEdKUu5bSyVjyxMBh0&apos;</span><br><span class="line">);</span><br><span class="line">app.post(&apos;/register&apos;, function (req, res) &#123;</span><br><span class="line">  var endpoint = req.body.endpoint;</span><br><span class="line">  saveRegistrationDetails(endpoint, key, authSecret);</span><br><span class="line">  const pushSubscription = &#123;</span><br><span class="line">    endpoint: req.body.endpoint,</span><br><span class="line">    keys: &#123;</span><br><span class="line">      auth: req.body.authSecret,</span><br><span class="line">      p256dh: req.body.key</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  var body = &apos;Thank you for registering&apos;;</span><br><span class="line">  var iconUrl = &apos;https://example.com/images/homescreen.png&apos;;</span><br><span class="line">  // 发送 Web 推送消息</span><br><span class="line">  webpush.sendNotification(pushSubscription,</span><br><span class="line">      JSON.stringify(&#123;</span><br><span class="line">        msg: body,</span><br><span class="line">        url: &apos;http://localhost:3111/&apos;,</span><br><span class="line">        icon: iconUrl</span><br><span class="line">      &#125;))</span><br><span class="line">    .then(result =&gt; res.sendStatus(201))</span><br><span class="line">    .catch(err =&gt; &#123;</span><br><span class="line">      console.log(err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(3111, function () &#123;</span><br><span class="line">  console.log(&apos;Web push app listening on port 3111!&apos;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>service worker监听push事件，将通知详情推送给用户</strong></p>
+<p>service-worker.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(&apos;push&apos;, function (event) &#123;</span><br><span class="line"> // 检查服务端是否发来了任何有效载荷数据</span><br><span class="line">  var payload = event.data ? JSON.parse(event.data.text()) : &apos;no payload&apos;;</span><br><span class="line">  var title = &apos;Progressive Times&apos;;</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    // 使用提供的信息来显示 Web 推送通知</span><br><span class="line">    self.registration.showNotification(title, &#123;</span><br><span class="line">      body: payload.msg,</span><br><span class="line">      url: payload.url,</span><br><span class="line">      icon: payload.icon</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>扩展知识：<a href="https://lzw.me/a/pwa-service-worker.html#3.3 Service Worker 的更新" target="_blank" rel="noopener">service worker的更新</a></p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="PWA的优势"><a href="#PWA的优势" class="headerlink" title="PWA的优势"></a>PWA的优势</h3><ul>
+<li>可以将app的快捷方式放置到桌面上，全屏运行，与原生app无异</li>
+<li>能够在各种网络环境下使用，包括网络差和断网条件下，不会显示undefind</li>
+<li>推送消息的能力</li>
+<li>其本质是一个网页，没有原生app的各种启动条件，快速响应用户指令<h3 id="PWA存在的问题"><a href="#PWA存在的问题" class="headerlink" title="PWA存在的问题"></a>PWA存在的问题</h3></li>
+<li>支持率不高:现在ios手机端不支持pwa，IE也暂时不支持</li>
+<li>Chrome在中国桌面版占有率还是不错的，安卓移动端上的占有率却很低</li>
+<li>各大厂商还未明确支持pwa</li>
+<li>依赖的GCM服务在国内无法使用</li>
+<li>微信小程序的竞争</li>
+</ul>
+<p>尽管有上述的一些缺点，PWA技术仍然有很多可以使用的点。</p>
+<ul>
+<li>service worker技术实现离线缓存，可以将一些不经常更改的静态文件放到缓存中，提升用户体验。</li>
+<li>service worker实现消息推送，使用浏览器推送功能，吸引用户</li>
+<li>渐进式开发，尽管一些浏览器暂时不支持，可以利用上述技术给使用支持浏览器的用户带来更好的体验。</li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://github.com/SangKa/PWA-Book-CN" target="_blank" rel="noopener">第一本 PWA 中文书</a></li>
+<li><a href="https://github.com/deanhume/progressive-web-apps-book" target="_blank" rel="noopener">PWA 英文书</a></li>
+<li><a href="https://lzw.me/a/pwa-service-worker.html" target="_blank" rel="noopener">网站渐进式增强体验(PWA)改造：Service Worker 应用详解</a></li>
+<li><a href="https://googlechrome.github.io/samples/service-worker/basic/index.html" target="_blank" rel="noopener">Basic Service Worker Sample</a></li>
+<li><a href="https://www.w3ctech.com/topic/866" target="_blank" rel="noopener">【翻译】Service Worker 入门</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Manifest" target="_blank" rel="noopener">Web App Manifest</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/primers/service-workers/" target="_blank" rel="noopener">Service Workers: an Introduction</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" target="_blank" rel="noopener">The Offline Cookbook</a></li>
+<li><a href="http://blog.csdn.net/baidu_browser/article/details/64440238" target="_blank" rel="noopener">微信小程序和PWA对比分析</a></li>
+<li><a href="https://x5.tencent.com/tbs/guide/serviceworker.html" target="_blank" rel="noopener">Service Worker最佳实践</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8zMTkzOS84NTAz">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwa/">pwa</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/15/webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          webpack初识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/27/node-express/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">node+express实现图片上传功能</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x80CC;&#x666F;" class="headerlink" title="&#x80CC;&#x666F;"></a>&#x80CC;&#x666F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-PWA"><span class="nav-number">2.</span> <span class="nav-text"><a href="#What&#x2019;s-PWA" class="headerlink" title="What&#x2019;s PWA?"></a>What&#x2019;s PWA?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWA的实现"><span class="nav-number">3.</span> <span class="nav-text"><a href="#PWA&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="PWA&#x7684;&#x5B9E;&#x73B0;"></a>PWA&#x7684;&#x5B9E;&#x73B0;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Manifest实现添加至主屏幕"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#Manifest&#x5B9E;&#x73B0;&#x6DFB;&#x52A0;&#x81F3;&#x4E3B;&#x5C4F;&#x5E55;" class="headerlink" title="Manifest&#x5B9E;&#x73B0;&#x6DFB;&#x52A0;&#x81F3;&#x4E3B;&#x5C4F;&#x5E55;"></a>Manifest&#x5B9E;&#x73B0;&#x6DFB;&#x52A0;&#x81F3;&#x4E3B;&#x5C4F;&#x5E55;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service-worker实现离线缓存"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#service-worker&#x5B9E;&#x73B0;&#x79BB;&#x7EBF;&#x7F13;&#x5B58;" class="headerlink" title="service worker&#x5B9E;&#x73B0;&#x79BB;&#x7EBF;&#x7F13;&#x5B58;"></a>service worker&#x5B9E;&#x73B0;&#x79BB;&#x7EBF;&#x7F13;&#x5B58;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是service-worker"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;service-worker" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;service worker"></a>&#x4EC0;&#x4E48;&#x662F;service worker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP缓存与service-worker缓存"><span class="nav-number">3.2.2.</span> <span class="nav-text"><a href="#HTTP&#x7F13;&#x5B58;&#x4E0E;service-worker&#x7F13;&#x5B58;" class="headerlink" title="HTTP&#x7F13;&#x5B58;&#x4E0E;service worker&#x7F13;&#x5B58;"></a>HTTP&#x7F13;&#x5B58;&#x4E0E;service worker&#x7F13;&#x5B58;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现离线缓存"><span class="nav-number">3.2.3.</span> <span class="nav-text"><a href="#&#x5B9E;&#x73B0;&#x79BB;&#x7EBF;&#x7F13;&#x5B58;" class="headerlink" title="&#x5B9E;&#x73B0;&#x79BB;&#x7EBF;&#x7F13;&#x5B58;"></a>&#x5B9E;&#x73B0;&#x79BB;&#x7EBF;&#x7F13;&#x5B58;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调试相关"><span class="nav-number">3.2.4.</span> <span class="nav-text"><a href="#&#x8C03;&#x8BD5;&#x76F8;&#x5173;" class="headerlink" title="&#x8C03;&#x8BD5;&#x76F8;&#x5173;"></a>&#x8C03;&#x8BD5;&#x76F8;&#x5173;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#serice-worker实现消息推送"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#serice-worker&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x63A8;&#x9001;" class="headerlink" title="serice worker&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x63A8;&#x9001;"></a>serice worker&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x63A8;&#x9001;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PWA的优势"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#PWA&#x7684;&#x4F18;&#x52BF;" class="headerlink" title="PWA&#x7684;&#x4F18;&#x52BF;"></a>PWA&#x7684;&#x4F18;&#x52BF;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PWA存在的问题"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#PWA&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="PWA&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;"></a>PWA&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x6587;&#x6863;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x6863;"></a>&#x53C2;&#x8003;&#x6587;&#x6863;</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 商企通前端 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js">
+</script>
+
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css">
+  <script src="https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            商企通前端
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 商企通前端 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0"" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
